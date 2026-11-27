@@ -15,6 +15,10 @@ http.createServer(async (req, res) => {
   const url = (req.url || '/').split('?')[0]
 
   if (url.startsWith('/api/')) {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+    if (req.method === 'OPTIONS') { res.statusCode = 204; return res.end() }
     res.status = (c) => { res.statusCode = c; return res }
     res.json = (d) => { res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify(d)) }
     const name = url.replace(/^\/api\//, '')
