@@ -48,7 +48,7 @@ function App() {
 
     try {
       for (let i = 0; i < samples.length; i++) {
-        const response = await fetch(`${(import.meta.env.VITE_API_URL || "").replace(//$/, "")}/api/count-tokens`, {
+        const response = await fetch(`${(import.meta.env.VITE_API_URL || "").replace(/\/$/, "")}/api/count-tokens`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
